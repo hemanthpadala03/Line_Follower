@@ -81,7 +81,7 @@ void loop()
         analogWrite(in1,0);
         analogWrite(in2,0); 
     }
-    if(analogRead(A0)<100 && analogRead(A1)>800 && analogRead(A2)>800 && analogRead(A3)>800 && analogRead(A4)>800){
+    if(analogRead(A0)<100 && analogRead(A1)<100 && analogRead(A2)<100 && analogRead(A3)<100 && analogRead(A4)<100){
         analogWrite(in3,0);
         analogWrite(in4,0);
         analogWrite(in1,0);
@@ -94,10 +94,10 @@ void loop()
 //      motor2.drive(lfspeed);
         Serial.println(lfspeed);
         Serial.println("Right");
-        analogWrite(in3,lfspeed);
-        analogWrite(in4,0);
-        analogWrite(in1,0);
+        analogWrite(in1,lfspeed);
         analogWrite(in2,0);
+        analogWrite(in3,0);
+        analogWrite(in4,0);
     }
 
     else if (analogRead(A4) > 500 && analogRead(A0) < 500)
@@ -106,10 +106,10 @@ void loop()
 //      motor2.drive(0);
         Serial.println(lfspeed);
         Serial.println("Left");
-        analogWrite(in1,lfspeed);
-        analogWrite(in2,0);
-        analogWrite(in3,0);
+        analogWrite(in3,lfspeed);
         analogWrite(in4,0);
+        analogWrite(in1,0);
+        analogWrite(in2,0);
     }
     else if (analogRead(A2) > 500)
     {
