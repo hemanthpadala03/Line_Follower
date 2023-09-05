@@ -1,0 +1,106 @@
+int ir1 = A0;
+int ir2 = A1;
+int ir3 = A2;
+int ir4 = A3;
+int ir5 = A4;
+int ir6 = A5;
+int ir7 = A6;
+int ir8 = A7;
+
+
+#define Kp  0.07
+// experiment to determine this, start by something small that just makes your bot follow the line at a slow speed
+#define Kd  0.6
+int lastError = 0;
+#define rightMaxSpeed 200 // max speed of the robot                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+#define leftMaxSpeed 200// max speed of the robot
+#define rightBaseSpeed 150 // this is the speed at which the motors should spin when the robot is perfectly on the line
+#define leftBaseSpeed 150
+
+#define rightenable 13 //enableB
+#define leftenable 8 //enableA
+#define rightMotor1 12 //int3
+#define rightMotor2 11 //int4
+#define leftMotor1 10 //int1
+#define leftMotor2 9 //int2
+
+void setup() {
+  pinMode(ir1,INPUT);
+  pinMode(ir2,INPUT);
+  pinMode(ir3,INPUT);
+  pinMode(ir4,INPUT);
+  pinMode(ir5,INPUT);
+  pinMode(ir6,INPUT);
+  pinMode(ir7,INPUT);
+  pinMode(ir8,INPUT);
+  
+ pinMode(rightMotor1, OUTPUT);
+  pinMode(rightMotor2, OUTPUT);
+  pinMode(rightenable, OUTPUT);
+  pinMode(leftMotor1, OUTPUT);
+  pinMode(leftMotor2, OUTPUT);
+  pinMode(leftenable, OUTPUT);
+  
+  Serial.begin(9600);
+}
+
+int Print(int ir1value,int ir2value,int ir3value, int ir4value, int ir5value, int ir6value, int ir7value, int ir8value){
+//  Serial.print(ir1value);
+//  Serial.print(" ");
+  Serial.print(ir2value);
+  Serial.print(" ");
+  Serial.print(ir3value);
+  Serial.print(" ");
+  Serial.print(ir4value);
+  Serial.print(" ");
+  Serial.print(ir5value);
+  Serial.print(" ");
+  Serial.print(ir6value);
+  Serial.print(" ");
+  Serial.print(ir7value);
+  Serial.print(" ");
+//  Serial.print(ir8value);
+  Serial.println();
+//  delay(500);
+}
+void loop() {
+  int ir1value = analogRead(ir1);
+  int ir2value = analogRead(ir2);
+  int ir3value = analogRead(ir3);
+  int ir4value = analogRead(ir4);
+  int ir5value = analogRead(ir5);
+  int ir6value = analogRead(ir6);
+  int ir7value = analogRead(ir7);
+  int ir8value = analogRead(ir8);
+  int position = (3*ir2value+2*ir3value+ir4value-ir5value-2*ir6value-3*ir7value);
+  Print(ir1value,ir2value,ir3value,ir4value,ir5value,ir6value,ir7value,ir8value);
+//  Serial.println(error);
+  Serial.println(position);
+    int error = position + 22;
+    int motorSpeed = Kp * error + Kd * (error - lastError);
+    lastError = error;
+
+    int rightMotorSpeed = rightBaseSpeed + motorSpeed;
+    int leftMotorSpeed = leftBaseSpeed - motorSpeed;
+
+    if (rightMotorSpeed > rightMaxSpeed ){
+        rightMotorSpeed = rightMaxSpeed; // prevent the motor from going beyond max speed
+    }
+    if (leftMotorSpeed > leftMaxSpeed ){
+      leftMotorSpeed = leftMaxSpeed; // prevent the motor from going beyond max speed
+    }
+    if (rightMotorSpeed < 0){
+      rightMotorSpeed = 0; // keep the motor speed positive
+    }
+    if (leftMotorSpeed < 0){
+      leftMotorSpeed = 0; // keep the motor speed positive
+    }
+      digitalWrite(rightenable, HIGH);
+      digitalWrite(leftenable, HIGH);// move forward with appropriate speeds
+      analogWrite(rightMotor1, 0);
+      analogWrite(rightMotor2, rightMotorSpeed);
+      analogWrite(leftMotor1, leftMotorSpeed);
+      analogWrite(leftMotor2, 0);
+    Serial.println(rightMotorSpeed);
+    Serial.println(leftMotorSpeed);
+}
