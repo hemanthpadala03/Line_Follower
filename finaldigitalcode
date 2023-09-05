@@ -1,0 +1,322 @@
+#define rightenable 13 //enabLeB
+#define leftenable 8 //enabLeA
+#define rightMotor1 12 //int3
+#define rightMotor2 11 //int4
+#define leftMotor1 10 //int1
+#define leftMotor2 9 //int2
+int ir1 = A0; //rightmost
+int ir2 = A6;
+int ir3 = A5;
+int ir4 = A4;
+int ir5 = A3;
+int ir6 = A2; 
+int ir7 = A1;
+int ir8 = A7; //leftmost
+
+void setup() {
+  pinMode(rightMotor1, OUTPUT);
+  pinMode(rightMotor2, OUTPUT);
+  pinMode(rightenable, OUTPUT);
+  pinMode(leftMotor1, OUTPUT);
+  pinMode(leftMotor2, OUTPUT);
+  pinMode(leftenable, OUTPUT);
+
+}
+
+void loop() {
+  int ir1v = digitalRead(ir2);
+  int ir2v = digitalRead(ir3);
+  int ir3v = digitalRead(ir4);
+  int ir4v = digitalRead(ir5);
+  int ir5v = digitalRead(ir6);
+  int ir6v = digitalRead(ir7);
+  int ir7v = digitalRead(ir1); //not using
+  int ir8v = digitalRead(ir8); //not using
+
+  if(ir1v==LOW&&ir2v==LOW&&ir3v==LOW&&ir4v==LOW&&ir5v==LOW&&ir6v==LOW)
+  {
+    left();
+  }
+  if(ir1v==HIGH&&ir2v==HIGH&&ir3v==HIGH&&ir4v==HIGH&&ir5v==HIGH&&ir6v==HIGH)
+  {
+    forward();
+  }
+  else if(ir1v==HIGH&&ir2v==HIGH&&ir3v==HIGH&&ir4v==HIGH&&ir5v==HIGH&&ir6v==LOW)
+  {
+    left();
+  }
+  else if(ir1v==HIGH&&ir2v==HIGH&&ir3v==HIGH&&ir4v==HIGH&&ir5v==LOW&&ir6v==HIGH)
+  {
+    left();
+  }
+  else if(ir1v==HIGH&&ir2v==HIGH&&ir3v==HIGH&&ir4v==HIGH&&ir5v==LOW&&ir6v==LOW)
+  {
+    left();
+  }
+ /* else if(ir1v==HIGH&&ir2v==HIGH&&ir3v==HIGH&&ir4v==LOW&&ir5v==HIGH&&ir6v==HIGH)
+  {
+    left();
+  }
+  else if(ir1v==HIGH&&ir2v==HIGH&&ir3v==HIGH&&ir4v==LOW&&ir5v==HIGH&&ir6v==LOW)
+  {
+    left();
+  }
+  else if(ir1v==HIGH&&ir2v==HIGH&&ir3v==HIGH&&ir4v==LOW&&ir5v==LOW&&ir6v==HIGH)
+  {
+    left();
+  }*/
+  else if(ir1v==HIGH&&ir2v==HIGH&&ir3v==HIGH&&ir4v==LOW&&ir5v==LOW&&ir6v==LOW)
+  {
+    left();
+  }
+ /* else if(ir1v==HIGH&&ir2v==HIGH&&ir3v==LOW&&ir4v==HIGH&&ir5v==HIGH&&ir6v==HIGH)
+  {
+    right();
+  }
+  //else if(ir1v==HIGH&&ir2v==HIGH&&ir3v==LOW&&ir4v==HIGH&&ir5v==HIGH&&ir6v==LOW)
+  //{
+  //  left();
+  //}
+  //else if(ir1v==HIGH&&ir2v==HIGH&&ir3v==LOW&&ir4v==HIGH&&ir5v==LOW&&ir6v==HIGH)
+  //{
+  //  right();
+  //}
+  else if(ir1v==HIGH&&ir2v==HIGH&&ir3v==LOW&&ir4v==HIGH&&ir5v==LOW&&ir6v==LOW)
+  {
+    right();
+  }
+  //else if(ir1v==HIGH&&ir2v==HIGH&&ir3v==LOW&&ir4v==LOW&&ir5v==HIGH&&ir6v==HIGH)
+  //{
+  //  left();
+  //}
+  //else if(ir1v==HIGH&&ir2v==HIGH&&ir3v==LOW&&ir4v==LOW&&ir5v==HIGH&&ir6v==LOW)
+  //{
+  //  right();
+  //}
+  //else if(ir1v==HIGH&&ir2v==HIGH&&ir3v==LOW&&ir4v==LOW&&ir5v==LOW&&ir6v==HIGH)
+  //{
+  //  right();
+  //}*/
+  else if(ir1v==HIGH&&ir2v==HIGH&&ir3v==LOW&&ir4v==LOW&&ir5v==LOW&&ir6v==LOW)
+  {
+    left();
+  }
+  //else if(ir1v==HIGH&&ir2v==LOW&&ir3v==HIGH&&ir4v==HIGH&&ir5v==HIGH&&ir6v==HIGH)
+  //{
+  //  right();
+  //}
+  //else if(ir1v==HIGH&&ir2v==LOW&&ir3v==HIGH&&ir4v==HIGH&&ir5v==HIGH&&ir6v==LOW)
+  //{
+  //  forward();
+  //}
+  //else if(ir1v==HIGH&&ir2v==LOW&&ir3v==HIGH&&ir4v==HIGH&&ir5v==LOW&&ir6v==HIGH)
+  //{
+  //  forward();
+  //}
+  //else if(ir1v==HIGH&&ir2v==LOW&&ir3v==HIGH&&ir4v==HIGH&&ir5v==LOW&&ir6v==LOW)
+  //{
+  //  left();
+  //}
+  //else if(ir1v==HIGH&&ir2v==LOW&&ir3v==HIGH&&ir4v==LOW&&ir5v==HIGH&&ir6v==HIGH)
+  //{
+  //  left();
+  //}
+  //else if(ir1v==HIGH&&ir2v==LOW&&ir3v==HIGH&&ir4v==LOW&&ir5v==HIGH&&ir6v==LOW)
+  //{
+  //  left();
+  //}
+  //else if(ir1v==HIGH&&ir2v==LOW&&ir3v==HIGH&&ir4v==LOW&&ir5v==LOW&&ir6v==HIGH)
+  //{
+  //  right();
+  //}
+  //else if(ir1v==HIGH&&ir2v==LOW&&ir3v==HIGH&&ir4v==LOW&&ir5v==LOW&&ir6v==LOW)
+  //{
+  //  right();
+  //}
+  //else if(ir1v==HIGH&&ir2v==LOW&&ir3v==LOW&&ir4v==HIGH&&ir5v==HIGH&&ir6v==HIGH)
+  //{
+  //  left();
+  //}
+  //else if(ir1v==HIGH&&ir2v==LOW&&ir3v==LOW&&ir4v==HIGH&&ir5v==HIGH&&ir6v==LOW)
+  //{
+  //  left();
+  //}
+  //else if(ir1v==HIGH&&ir2v==LOW&&ir3v==LOW&&ir4v==HIGH&&ir5v==LOW&&ir6v==HIGH)
+  //{
+  //  left();
+  //}
+  //else if(ir1v==HIGH&&ir2v==LOW&&ir3v==LOW&&ir4v==HIGH&&ir5v==LOW&&ir6v==LOW)
+  //{
+  //  right();
+  //}
+  //else if(ir1v==HIGH&&ir2v==LOW&&ir3v==LOW&&ir4v==LOW&&ir5v==HIGH&&ir6v==HIGH)
+  //{
+  //  left();
+  //}
+  //else if(ir1v==HIGH&&ir2v==LOW&&ir3v==LOW&&ir4v==LOW&&ir5v==HIGH&&ir6v==LOW)
+  //{
+  //  right();
+  //}
+  //else if(ir1v==HIGH&&ir2v==LOW&&ir3v==LOW&&ir4v==LOW&&ir5v==LOW&&ir6v==HIGH)
+  //{
+  //  left();
+  //}
+  else if(ir1v==HIGH&&ir2v==LOW&&ir3v==LOW&&ir4v==LOW&&ir5v==LOW&&ir6v==LOW)
+  {
+    left();
+  }
+  else if(ir1v==LOW&&ir2v==HIGH&&ir3v==HIGH&&ir4v==HIGH&&ir5v==HIGH&&ir6v==HIGH)
+  {
+    right();
+  }
+  else if(ir1v==LOW&&ir2v==HIGH&&ir3v==HIGH&&ir4v==HIGH&&ir5v==HIGH&&ir6v==LOW)
+  {
+    forward();
+  }
+  //else if(ir1v==LOW&&ir2v==HIGH&&ir3v==HIGH&&ir4v==HIGH&&ir5v==LOW&&ir6v==HIGH)
+  //{
+  //  forward();
+  //}
+  else if(ir1v==LOW&&ir2v==HIGH&&ir3v==HIGH&&ir4v==HIGH&&ir5v==LOW&&ir6v==LOW)
+  {
+    left();
+  }
+  //else if(ir1v==LOW&&ir2v==HIGH&&ir3v==HIGH&&ir4v==LOW&&ir5v==HIGH&&ir6v==HIGH)
+  //{
+  //  left();
+  //}
+  //else if(ir1v==LOW&&ir2v==HIGH&&ir3v==HIGH&&ir4v==LOW&&ir5v==HIGH&&ir6v==LOW)
+  //{
+  //  forward();
+  //}
+  //else if(ir1v==LOW&&ir2v==HIGH&&ir3v==HIGH&&ir4v==LOW&&ir5v==LOW&&ir6v==HIGH)
+  //{
+  //  forward();
+  //}
+  else if(ir1v==LOW&&ir2v==HIGH&&ir3v==HIGH&&ir4v==LOW&&ir5v==LOW&&ir6v==LOW)
+  {
+    left();
+  }
+  //else if(ir1v==LOW&&ir2v==HIGH&&ir3v==LOW&&ir4v==HIGH&&ir5v==HIGH&&ir6v==HIGH)
+  //{
+  //  left();
+  //}
+  //else if(ir1v==LOW&&ir2v==HIGH&&ir3v==LOW&&ir4v==HIGH&&ir5v==HIGH&&ir6v==LOW)
+  //{
+  //  forward();
+  //}
+  //else if(ir1v==LOW&&ir2v==HIGH&&ir3v==LOW&&ir4v==HIGH&&ir5v==LOW&&ir6v==HIGH)
+  //{
+  //  left();
+  //}
+  //else if(ir1v==LOW&&ir2v==HIGH&&ir3v==LOW&&ir4v==HIGH&&ir5v==LOW&&ir6v==LOW)
+  //{
+  //  forward();
+  //}
+  //else if(ir1v==LOW&&ir2v==HIGH&&ir3v==LOW&&ir4v==LOW&&ir5v==HIGH&&ir6v==HIGH)
+  //{
+  //  left();
+  //}
+  //else if(ir1v==LOW&&ir2v==HIGH&&ir3v==LOW&&ir4v==LOW&&ir5v==HIGH&&ir6v==LOW)
+  //{
+  //  forward();
+  //}
+  //else if(ir1v==LOW&&ir2v==HIGH&&ir3v==LOW&&ir4v==LOW&&ir5v==LOW&&ir6v==HIGH)
+  //{
+  //  left();
+  //}
+  else if(ir1v==LOW&&ir2v==HIGH&&ir3v==LOW&&ir4v==LOW&&ir5v==LOW&&ir6v==LOW)
+  {
+    left();
+  }
+  else if(ir1v==LOW&&ir2v==LOW&&ir3v==HIGH&&ir4v==HIGH&&ir5v==HIGH&&ir6v==HIGH)
+  {
+    right();
+  }
+  else if(ir1v==LOW&&ir2v==LOW&&ir3v==HIGH&&ir4v==HIGH&&ir5v==HIGH&&ir6v==LOW)
+  {
+    right();
+  }
+  //else if(ir1v==LOW&&ir2v==LOW&&ir3v==HIGH&&ir4v==HIGH&&ir5v==LOW&&ir6v==HIGH)
+  //{
+  //  left();
+  //}
+  else if(ir1v==LOW&&ir2v==LOW&&ir3v==HIGH&&ir4v==HIGH&&ir5v==LOW&&ir6v==LOW)
+  {
+    forward();
+  }
+  //else if(ir1v==LOW&&ir2v==LOW&&ir3v==HIGH&&ir4v==LOW&&ir5v==HIGH&&ir6v==HIGH)
+  //{
+  //  left();
+  //}
+  //else if(ir1v==LOW&&ir2v==LOW&&ir3v==HIGH&&ir4v==LOW&&ir5v==HIGH&&ir6v==LOW)
+  //{
+  //  left();
+  //}
+  //else if(ir1v==LOW&&ir2v==LOW&&ir3v==HIGH&&ir4v==LOW&&ir5v==LOW&&ir6v==HIGH)
+  //{
+  //  left();
+  //}
+  else if(ir1v==LOW&&ir2v==LOW&&ir3v==HIGH&&ir4v==LOW&&ir5v==LOW&&ir6v==LOW)
+  {
+    forward();
+  }
+  else if(ir1v==LOW&&ir2v==LOW&&ir3v==LOW&&ir4v==HIGH&&ir5v==HIGH&&ir6v==HIGH)
+  {
+    right();
+  }
+  else if(ir1v==LOW&&ir2v==LOW&&ir3v==LOW&&ir4v==HIGH&&ir5v==HIGH&&ir6v==LOW)
+  {
+    right();
+  }
+  //else if(ir1v==LOW&&ir2v==LOW&&ir3v==LOW&&ir4v==HIGH&&ir5v==LOW&&ir6v==HIGH)
+  //{
+  //  right();
+  //}
+  else if(ir1v==LOW&&ir2v==LOW&&ir3v==LOW&&ir4v==HIGH&&ir5v==LOW&&ir6v==LOW)
+  {
+    forward();
+  }
+  else if(ir1v==LOW&&ir2v==LOW&&ir3v==LOW&&ir4v==LOW&&ir5v==HIGH&&ir6v==HIGH)
+  {
+    right();
+  }
+  else if(ir1v==LOW&&ir2v==LOW&&ir3v==LOW&&ir4v==LOW&&ir5v==HIGH&&ir6v==LOW)
+  {
+    right();
+  }
+  else if(ir1v==LOW&&ir2v==LOW&&ir3v==LOW&&ir4v==LOW&&ir5v==LOW&&ir6v==HIGH)
+  {
+    right();
+  }
+  
+  
+}
+
+void forward()
+{
+      digitalWrite(rightenable, HIGH);
+      digitalWrite(leftenable, HIGH);// move forward with appropriate speeds
+      analogWrite(rightMotor1, 0);
+      analogWrite(rightMotor2, 150);
+      analogWrite(leftMotor1, 150);
+      analogWrite(leftMotor2, 0);
+}
+void right()
+{
+      digitalWrite(rightenable, HIGH);
+      digitalWrite(leftenable, HIGH);// move forward with appropriate speeds
+      analogWrite(rightMotor1, 0);
+      analogWrite(rightMotor2, 150);
+      analogWrite(leftMotor1, 0);
+      analogWrite(leftMotor2, 0);
+}
+void left()
+{
+      digitalWrite(rightenable, HIGH);
+      digitalWrite(leftenable, HIGH);// move forward with appropriate speeds
+      analogWrite(rightMotor1, 0);
+      analogWrite(rightMotor2, 0);
+      analogWrite(leftMotor1, 150);
+      analogWrite(leftMotor2, 0);
+}
